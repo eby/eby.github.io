@@ -1,3 +1,72 @@
-baseURL: http://example.org/
+baseURL: https://ryaneby.com
 languageCode: en-us
-title: My New Hugo Site
+title: Ryan Eby
+paginate: 5
+theme: PaperMod
+copyright: "[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  description: "Your site description"
+  dark: "auto"
+  highlight: true
+  github: eby
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowFullTextinRSS: true
+  disableSpecial1stPost: true
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: false
+  tocopen: false
+  homeInfoParams:
+      Title: "Hi there \U0001F44B"
+      Content: Welcome to my blog
+  socialIcons:
+      - name: twitter
+        url: "https://twitter.com/eby"
+      - name: github
+        url: "https://github.com/eby"
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+menu:
+  main:
+    - identifier: archive
+      name: archive
+      url: /archives/
+      weight: 10
+    - identifier: about
+      name: about
+      url: /about/
+      weight: 20
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+
+permalinks:
+  posts: /:year/:month/:title/
+
+markup.goldmark.renderer:
+  unsafe: true
