@@ -1,0 +1,115 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Firefox Protocol Handlers | Ryan Eby</title>
+<meta name=keywords content>
+<meta name=description content="This is a tip I found back when I was having various problems with external applications not working with Firefox the way I wanted. It also helps if you want to create your own protocols for testing/development, etc.
+By protocol what I mean is the URL prefix such as aim:// mailto:// etc. Usually when you install a program that uses it&rsquo;s own protocol prefix it will update your browser with the correct information.">
+<meta name=author content>
+<link rel=canonical href=https://ryaneby.com/2005/11/firefox-protocol-handlers/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://ryaneby.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://ryaneby.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://ryaneby.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://ryaneby.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://ryaneby.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.92.1">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="Firefox Protocol Handlers">
+<meta property="og:description" content="This is a tip I found back when I was having various problems with external applications not working with Firefox the way I wanted. It also helps if you want to create your own protocols for testing/development, etc.
+By protocol what I mean is the URL prefix such as aim:// mailto:// etc. Usually when you install a program that uses it&rsquo;s own protocol prefix it will update your browser with the correct information.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ryaneby.com/2005/11/firefox-protocol-handlers/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2005-11-27T00:00:00+00:00">
+<meta property="article:modified_time" content="2005-11-27T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Firefox Protocol Handlers">
+<meta name=twitter:description content="This is a tip I found back when I was having various problems with external applications not working with Firefox the way I wanted. It also helps if you want to create your own protocols for testing/development, etc.
+By protocol what I mean is the URL prefix such as aim:// mailto:// etc. Usually when you install a program that uses it&rsquo;s own protocol prefix it will update your browser with the correct information.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://ryaneby.com/posts/"},{"@type":"ListItem","position":3,"name":"Firefox Protocol Handlers","item":"https://ryaneby.com/2005/11/firefox-protocol-handlers/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Firefox Protocol Handlers","name":"Firefox Protocol Handlers","description":"This is a tip I found back when I was having various problems with external applications not working with Firefox the way I wanted. It also helps if you want to create your own protocols for testing/development, etc.\nBy protocol what I mean is the URL prefix such as aim:// mailto:// etc. Usually when you install a program that uses it\u0026rsquo;s own protocol prefix it will update your browser with the correct information.","keywords":[],"articleBody":"This is a tip I found back when I was having various problems with external applications not working with Firefox the way I wanted. It also helps if you want to create your own protocols for testing/development, etc.\nBy protocol what I mean is the URL prefix such as aim:// mailto:// etc. Usually when you install a program that uses it’s own protocol prefix it will update your browser with the correct information. On linux and OSX though I’ve had mixed results and sometimes I want to send the information to other programs such as mplayer or VLC even on Windows. My original problem was with the Last.fm service whose radio player uses the lastfm:// protocol.\nIf you don’t already know you can type about:config into the address bar in Firefox and get advanced settings. This allows you to highly tweak the browser if you wish. It also allows you to add custom settings which is what we need to do. The general layout is:\nnetwork.protocol-handler.external.protocol = boolean (true or false) network.protocol-handler.app.protocol = /path/to/program\nI’ve found that there is no need to do the external boolean in my testing just the app one. So to add the lastfm:// protocol you would go to about:config and then right-click somewhere and choose new  string. You would then enter the following information:\nPreference Name: network.protocol-handler.app.lastfm Value: /path/to/lasfm/player (/home/ebyryan/Downloads/lastfm/player in my case)\nFor windows it would likely be the “C:\\dir\\to\\file” structure while OSX would have similar syntax to above (try terminal). You will likely need to restart firefox to notice the change. I’ve also used this to handle iTunes (itmss) protocols. If your in an internal setting where you control people’s computers you could use this to create custom protocols for your intranet that launch specific software on the users computers when they click on items. Not sure how useful that is though.\n","wordCount":"310","inLanguage":"en","datePublished":"2005-11-27T00:00:00Z","dateModified":"2005-11-27T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://ryaneby.com/2005/11/firefox-protocol-handlers/"},"publisher":{"@type":"Organization","name":"Ryan Eby","logo":{"@type":"ImageObject","url":"https://ryaneby.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://ryaneby.com accesskey=h title="Ryan Eby (Alt + H)">Ryan Eby</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://ryaneby.com/archives/ title=archive>
+<span>archive</span>
+</a>
+</li>
+<li>
+<a href=https://ryaneby.com/about/ title=about>
+<span>about</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://ryaneby.com>Home</a>&nbsp;»&nbsp;<a href=https://ryaneby.com/posts/>Posts</a></div>
+<h1 class=post-title>
+Firefox Protocol Handlers
+</h1>
+<div class=post-meta><span title="2005-11-27 00:00:00 +0000 UTC">November 27, 2005</span>&nbsp;·&nbsp;2 min
+</div>
+</header>
+<div class=post-content><p>This is a tip I found back when I was having various problems with external applications not working with Firefox the way I wanted. It also helps if you want to create your own protocols for testing/development, etc.</p>
+<p>By protocol what I mean is the URL prefix such as aim:// mailto:// etc. Usually when you install a program that uses it&rsquo;s own protocol prefix it will update your browser with the correct information. On linux and OSX though I&rsquo;ve had mixed results and sometimes I want to send the information to other programs such as mplayer or VLC even on Windows. My original problem was with the Last.fm service whose radio player uses the lastfm:// protocol.</p>
+<p>If you don&rsquo;t already know you can type about:config into the address bar in Firefox and get advanced settings. This allows you to highly tweak the browser if you wish. It also allows you to add custom settings which is what we need to do. The general layout is:</p>
+<p>network.protocol-handler.external.protocol = boolean (true or false)
+network.protocol-handler.app.protocol = /path/to/program</p>
+<p>I&rsquo;ve found that there is no need to do the external boolean in my testing just the app one. So to add the lastfm:// protocol you would go to about:config and then right-click somewhere and choose new > string. You would then enter the following information:</p>
+<p>Preference Name: network.protocol-handler.app.lastfm
+Value: /path/to/lasfm/player (/home/ebyryan/Downloads/lastfm/player in my case)</p>
+<p>For windows it would likely be the &ldquo;C:\dir\to\file&rdquo; structure while OSX would have similar syntax to above (try terminal). You will likely need to restart firefox to notice the change. I&rsquo;ve also used this to handle iTunes (itmss) protocols. If your in an internal setting where you control people&rsquo;s computers you could use this to create custom protocols for your intranet that launch specific software on the users computers when they click on items. Not sure how useful that is though.</p>
+</div>
+<footer class=post-footer>
+<nav class=paginav>
+<a class=prev href=https://ryaneby.com/2005/11/utility-of-offering-book-pages-online/>
+<span class=title>« Prev Page</span>
+<br>
+<span>Utility of Offering Book Pages Online</span>
+</a>
+<a class=next href=https://ryaneby.com/2005/11/highered-blogcon/>
+<span class=title>Next Page »</span>
+<br>
+<span>HigherEd BlogCon</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>

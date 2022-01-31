@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Categories on Ryan Eby</title>
+    <link>https://ryaneby.com/categories/</link>
+    <description>Recent content in Categories on Ryan Eby</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)</copyright>
+    <lastBuildDate>Wed, 10 Aug 2011 19:00:00 +0000</lastBuildDate><atom:link href="https://ryaneby.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>code4lib</title>
+      <link>https://ryaneby.com/categories/code4lib/</link>
+      <pubDate>Wed, 10 Aug 2011 19:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/categories/code4lib/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

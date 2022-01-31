@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>code4lib on Ryan Eby</title>
+    <link>https://ryaneby.com/categories/code4lib/</link>
+    <description>Recent content in code4lib on Ryan Eby</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)</copyright>
+    <lastBuildDate>Wed, 10 Aug 2011 19:00:00 +0000</lastBuildDate><atom:link href="https://ryaneby.com/categories/code4lib/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Summer Game Prize Fulfillment Workflow</title>
+      <link>https://ryaneby.com/2011/08/summer-game-prize-fulfillment-workflow/</link>
+      <pubDate>Wed, 10 Aug 2011 19:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2011/08/summer-game-prize-fulfillment-workflow/</guid>
+      <description>Cross-posted from the AADL Devblog
+The AADL Summer Game has an online shop where earned points can be spent on awesome schwag. To try to make it easy for the volunteers and staff to fulfill the orders we took advantage of some of the infrastructure we already had in place for other parts of the site.
+As some know our hold notices currently go through a script that sends an email along with printing a custom label to a label printer, that is used for identification on our hold shelves.</description>
+      <content:encoded><![CDATA[<p>Cross-posted from the <a href="http://www.aadl.org/node/41426">AADL Devblog</a></p>
+<p>The <a href="http://play.aadl.org">AADL Summer Game</a> has an online shop where earned points can be spent on awesome schwag. To try to make it easy for the volunteers and staff to fulfill the orders we took advantage of some of the infrastructure we already had in place for other parts of the site.</p>
+<p>As some know our hold notices currently go through a script that sends an email along with printing a custom label to a label printer, that is used for identification on our hold shelves. We reused this process to print a custom pickup/order label everytime an order comes through the <a href="http://www.ubercart.org/">ubercart</a> game shop by hooking into the payment process. This leaves a spool of order labels that those doing fulfillment can pick up throughout the week and start filling. A spool that has been increasing dramatically in length recently.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>As orders are filled the barcode on the custom label is scanned, which sets the order as fulfilled and adds a notification job to a <a href="http://redis.io">redis</a> queue. Players have the option of getting SMS notifications (sent through <a href="http://twilio.com">Twilio</a>) or email. Shop keepers can also cancel orders if need be which refunds the points to the player account.</p>
+<p>After the items are delivered to the branch destinations on Friday morning, a script goes through the jobs on the redis queue and sends the notifications letting players know their items are ready for pickup.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>More background info on our <a href="http://play.aadl.org">Summer Game</a> is in the works and keep that order spool growing!</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Under the Hood of the AADL Summer Game</title>
+      <link>https://ryaneby.com/2011/08/under-the-hood-of-the-aadl-summer-game/</link>
+      <pubDate>Wed, 10 Aug 2011 18:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2011/08/under-the-hood-of-the-aadl-summer-game/</guid>
+      <description>Cross-posted from the AADL Devblog and written by our lead developer ejk
+The 2011 Summer Game has brought big changes to the way we play here at the library. In addition to the &amp;ldquo;classic&amp;rdquo; summer reading game, players can earn points for writing reviews, adding comments and finding game codes at events and locations. Players also earn badges for special accomplishments. We just passed player ID #4000 and we still have weeks to go for even more players to join and earn points and prizes.</description>
+      <content:encoded><![CDATA[<p>Cross-posted from the <a href="http://www.aadl.org/node/41356">AADL Devblog</a> and written by our lead developer <a href="http://twitter.com/ejk">ejk</a></p>
+<p>The 2011 Summer Game has brought big changes to the way we play here at the library. In addition to the &ldquo;classic&rdquo; summer reading game, players can earn points for writing reviews, adding comments and finding game codes at events and locations. Players also earn badges for special accomplishments. We just passed player ID #4000 and we still have weeks to go for even more players to join and earn points and prizes. The pieces that make up the Summer Game are diverse but by adding custom code to the solid foundations provided by these open tools we&rsquo;ve been able to concentrate our efforts on adding new content and functionality rather than chasing bugs and putting out fires. Here&rsquo;s some of the tools and technologies that make up the Summer Game:</p>
+<p><a href="http://drupal.org/">Drupal</a>: The aadl.org websites run on the Drupal Content Management System. In addition to giving us a framework for writing blogs, creating user accounts and writing comments, it has a extensive API which allows us to leverage those pieces to add our own functionality. A drupal module for Summer Game was created that keeps track of player data, lets players add points through multiple activities, and displays a leaderboard. Players are attached to user accounts, and a simple function which could be placed in any code that runs the site allows us to award points for any website action. The summer game module is available through github: <a href="https://github.com/aadl/Summer-Game">Summer Game module</a>.</p>
+<p><a href="http://www.ubercart.org/">Ubercart</a>: The Summer Game shop runs on this Drupal module that provides a simple shop interface for your Drupal site. Again, it has a extensive API which allowed us to use Summer Game points as a custom payment type. We also added a hook into the order process to send data to our custom label printing function, printing labels for the items at the time of order, and creating custom order emails. By leveraging the ubercart module, we were able to create a complete online shop and order fulfillment process in about 3 weeks, start to finish.</p>
+<p><a href="http://www.fpdf.org/">FPDF</a>/<a href="http://www.setasign.de/products/pdf-php-solutions/fpdi/">FPDI</a>: The core of the Summer Game is still the &ldquo;classic&rdquo; summer reading game, where you read books, fill out a score card, bring it to a library location and get a prize. This year we decided to track all our score cards with unique identifier numbers to see where and when people picked them up. We also wanted to allow players to print their score cards on demand as PDF files. The FPDF library allows us to dynamically create each score card PDF with a unique number. We also use the FPDF library to create easily-printable Game Code signs so staff can post a points-accruing Game Code at their events. The FPDI plugin for FPDF allows you to import an existing PDF as a template for your FPDF document.</p>
+<p><a href="http://redis.io/">Redis</a>: Redis provides a persistent data store, similar to a database, but as key-value pairs rather than tables. We used Redis to store the score card identification numbers because it allowed us to do an atomic increment operation. We don&rsquo;t want two people printing score cards at the same time with the same ID number. In a single call we can get the next number in the sequence without worrying about holding other people up or both grabbing the same number. We also use Redis to store our shop email notification data in a processing queue which allows us to delay sending them out. We currently use the <a href="https://github.com/jdp/redisent">Redisent PHP library</a> to talk to our Redis install.</p>
+<p><a href="http://www.twilio.com/">Twilio</a>: Twilio provides an easy API to interact with users via cell phone text messages. By creating a simple drupal module that utilizes the Twilio API we allowed players at an event to easily sign up for the game and start earning points using their cell phones. We also use twilio to send prize pickup reminder text messages when we fill orders from the Summer Game shop.</p>
+<p>AADL is happy to share source code. View the rest of our shared code on our <a href="https://github.com/aadl">github page</a>. Code monkeys not included. Your mileage may vary.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Forcing Download with nginx</title>
+      <link>https://ryaneby.com/2011/04/forcing-download-with-nginx/</link>
+      <pubDate>Wed, 06 Apr 2011 18:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2011/04/forcing-download-with-nginx/</guid>
+      <description>Prompting a browser to download rather than open something is rather common. You can do so from your favorite web programming language by adding the Content-Disposition attachment header when sending the data back.
+This can come in handy if you want to use the same file for both web serving and download. Say a MP4 movie file. It makes it a little easier than the right-click save-as method.
+If you want to remove the overhead of serving a file through a script you can also accomplish this straight in nginx.</description>
+      <content:encoded><![CDATA[<p>Prompting a browser to download rather than open something is rather common. You can do so from your favorite web programming language by adding the Content-Disposition attachment header when sending the data back.</p>
+<p>This can come in handy if you want to use the same file for both web serving and download. Say a MP4 movie file. It makes it a little easier than the right-click save-as method.</p>
+<p>If you want to remove the overhead of serving a file through a script you can also accomplish this straight in <a href="http://wiki.nginx.org/">nginx</a>. In the example below the file can be served both ways.</p>
+<p>Served normally: <a href="http://example.org/mymovie.mp4">http://example.org/mymovie.mp4</a></p>
+<p>Served as attachment: <a href="http://example.org/mymovie.mp4?name=mymovie.mp4">http://example.org/mymovie.mp4?name=mymovie.mp4</a></p>
+<p>This would go inside the location declaration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx">  <span style="color:#66d9ef">if</span> <span style="color:#e6db74">(</span>$args<span style="color:#e6db74">)</span>{
+    <span style="color:#f92672">add_header</span> <span style="color:#e6db74">X-Content-Type-Options</span> <span style="color:#e6db74">nosniff</span>;
+    <span style="color:#f92672">add_header</span> <span style="color:#e6db74">Content-Type</span> <span style="color:#e6db74">&#34;application/octet-stream&#34;</span>;
+    <span style="color:#f92672">add_header</span> <span style="color:#e6db74">Content-Disposition</span> <span style="color:#e6db74">&#39;attachment</span>; <span style="color:#f92672">filename=&#34;$arg_name&#34;&#39;</span>;
+  }</code></pre></div>
+<p>This also gives you the option of having the downloaded file be named differently. So if you have directory structure like /2011/mysong.mp3 you could have it save as 2011-mysong.mp3.</p>
+<p>This also lets you take advantage of other nginx features like <a href="http://wiki.nginx.org/X-accel">X-accel</a> when serving or streaming the files.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Staff Requests in SOPAC</title>
+      <link>https://ryaneby.com/2011/04/staff-requests-in-sopac/</link>
+      <pubDate>Tue, 05 Apr 2011 18:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2011/04/staff-requests-in-sopac/</guid>
+      <description>Cross-posted from the AADL Devblog
+Over the past few years we&amp;rsquo;ve taken advantage of having a catalog we can tweak and change. Recently as we&amp;rsquo;ve been able to store more data outside of the ILS we have gone the route of making our catalog one of main development platforms.
+However, staff still had to go back to the staff client for the ILS for some functions. While many of those functions don&amp;rsquo;t really make sense as part of the catalog, requesting items for other patrons was one that did.</description>
+      <content:encoded><![CDATA[<p>Cross-posted from the <a href="http://www.aadl.org/devblog">AADL Devblog</a></p>
+<p>Over the past few years we&rsquo;ve taken advantage of having a catalog we can tweak and change. Recently as we&rsquo;ve been able to store more data outside of the ILS we have gone the route of making our catalog one of main development platforms.</p>
+<p>However, staff still had to go back to the staff client for the ILS for some functions. While many of those functions don&rsquo;t really make sense as part of the catalog, requesting items for other patrons was one that did. Having full control over the search and what fields are indexed created a back and forth between the client and website for finding things.</p>
+<p>We just rolled out the feature for staff so they can request for others via the public catalog (if they have the permission). Its a feature I&rsquo;d recommend looking at implementing if you are working on an opac replacement or other catalog like feature.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Just one more step moving more non-inventory things to the drupal/sopac side of things rather than the ILS.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Availability in Globally Distributed Storage Systems</title>
+      <link>https://ryaneby.com/2011/02/availability-in-globally-distributed-storage-systems/</link>
+      <pubDate>Sat, 26 Feb 2011 13:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2011/02/availability-in-globally-distributed-storage-systems/</guid>
+      <description>Google just released a research paper entitled Availability in Globally Distributed Storage Systems. It is available for download in PDF format (14 pages). From the abstract:
+ We characterize the availability properties of cloud storage systems based on an extensive one year study of Google&amp;rsquo;s main storage infrastructure and present statistical models that enable further insight into the impact of multiple design choices, such as data placement and replication strategies. With these models we compare data availability under a variety of system parameters given the real patterns of failures observed in our fleet.</description>
+      <content:encoded><![CDATA[<p>Google just released a research paper entitled <a href="http://research.google.com/pubs/pub36737.html">Availability in Globally Distributed Storage Systems</a>. It is available for download in PDF format (14 pages). From the abstract:</p>
+<blockquote>
+<p>We characterize the availability properties of cloud storage systems based on an extensive one year study of Google&rsquo;s main storage infrastructure and present statistical models that enable further insight into the impact of multiple design choices, such as data placement and replication strategies. With these models we compare data availability under a variety of system parameters given the real patterns of failures observed in our fleet.</p>
+</blockquote>
+<p>It is worth taking a quick browse of. The paper focuses on data availability (online versus data backup/integrity) and includes things like planned downtime. Metrics are given to assist in system design. Some highlights:</p>
+<ul>
+<li>GFS waits around 15 minutes before trying recovery process as that is more than the average time a node might return itself to normal operation (reboot, etc)</li>
+<li>Many events are rack and multi-rack level (network, rolling reboots, etc)</li>
+<li>Failures tend to happen in bursts</li>
+<li>Important to take the above two into account when planning replication schemes</li>
+<li>Reboot time is important</li>
+<li>Storing data across data centers reduces data unavailability by many orders of magnitude compared to having the same number of replicas in a single data center</li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Bagit Validation and CIJoe</title>
+      <link>https://ryaneby.com/2011/02/bagit-validation-and-cijoe/</link>
+      <pubDate>Fri, 18 Feb 2011 16:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2011/02/bagit-validation-and-cijoe/</guid>
+      <description>I&amp;rsquo;ve started playing around with bagit and some of the other curation microservices. One of the features involved is manifest files w/ checksums of all the data files in the bag. So far I&amp;rsquo;m still just getting the hang of it but decided to try cbeer&amp;rsquo;s bagit gem and try hooking the validate function to cijoe integration server. With the bag in git repository it was easy to have cijoe run a simple script that returned zero when validated, or one with output if there was a problem.</description>
+      <content:encoded><![CDATA[<p>I&rsquo;ve started playing around with <a href="https://confluence.ucop.edu/display/Curation/BagIt">bagit</a> and some of the other <a href="https://confluence.ucop.edu/display/Curation/Home">curation microservices</a>. One of the features involved is manifest files w/ checksums of all the data files in the bag. So far I&rsquo;m still just getting the hang of it but decided to try <a href="https://github.com/cbeer/bagit">cbeer&rsquo;s bagit gem</a> and try hooking the validate function to <a href="https://github.com/defunkt/cijoe">cijoe</a> integration server. With the bag in git repository it was easy to have cijoe run a simple script that returned zero when validated, or one with output if there was a problem. cijoe can use git hooks to notify via various methods (example one for email is given in repo).</p>
+<p>While not robust it only took a minute to get the output displayed:</p>
+<p><img loading="lazy" src="http://farm6.static.flickr.com/5253/5455986619_3296f6881b.jpg" alt="bagit and cijoe"  />
+
+<a href="http://www.flickr.com/photos/ebyryan/5455986619/sizes/l/">larger version</a></p>
+<p>A few thoughts:</p>
+<ul>
+<li>need to tweak cijoe to work on local repository instead of requiring an origin</li>
+<li>keeping the validation script in the repository helps. should probably validate/manifest it as well</li>
+</ul>
+<p>Overall a lot easier than I thought it would be and serves as a simple interface for seeing current status for those who like a webpage. cijoe also has jsonp and a simple http status api that allows other tools to easily look at build status so seems like it could be an easy tool to run all your tests in one place and let various things ping it.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>IE8 Upgrade and Enhanced Security Stuck For Some Profiles</title>
+      <link>https://ryaneby.com/2010/04/ie8-upgrade-and-enhanced-security-stuck-for-some-profiles/</link>
+      <pubDate>Mon, 05 Apr 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://ryaneby.com/2010/04/ie8-upgrade-and-enhanced-security-stuck-for-some-profiles/</guid>
+      <description>Had an issue with IE upgrades in the recent past where after the upgrade multiple pre-existing profiles would state they were in &amp;ldquo;Enhanced Security Mode&amp;rdquo; despite that mode being disabled. New profiles would work fine and Administrator usually did as well.
+From what I&amp;rsquo;ve been able to track down, MS hasn&amp;rsquo;t figured out the exact circumstances that cause it. Fresh installs w/ upgrades before anyone logs in seem to work fine in my experience.</description>
+      <content:encoded><![CDATA[<p>Had an issue with IE upgrades in the recent past where after the upgrade multiple pre-existing profiles would  state they were in &ldquo;Enhanced Security Mode&rdquo; despite that mode being disabled. New profiles would work fine and Administrator usually did as well.</p>
+<p>From what I&rsquo;ve been able to track down, MS hasn&rsquo;t figured out the exact circumstances that cause it. Fresh installs w/ upgrades before anyone logs in seem to work fine in my experience. Some profiles would also work fine despite being similar to ones that did.</p>
+<p>Searches brought up multiple hacks to fix it. One is to make a login script that modifies the registry like so for every user:</p>
+<pre><code>[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]
+&quot;IEHardenIENoWarn&quot;=dword:00000000
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap]
+&quot;IEHarden&quot;=dword:00000000
+</code></pre>
+<p>The best solution I found, though, was to use GPO and force a setting for the Internet Zone. Forcing it to Medium or whatever level appears to get pass the enhanced security issues and things work like normal.</p>
+<p>Under either User or Computer depending on how you have GPO setup you would want to enable and set a level for:</p>
+<pre><code>Administrative Templates&gt;Windows Components&gt;Internet Explorer&gt;Internet Control Panel&gt;Security Page&gt;Internet Zone
+</code></pre>
+<p>Not ideal but it is the best I&rsquo;ve found</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

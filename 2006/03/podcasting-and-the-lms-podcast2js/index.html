@@ -1,0 +1,111 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Podcasting and the LMS - Podcast2JS | Ryan Eby</title>
+<meta name=keywords content>
+<meta name=description content="Podcasting still seems to be taking off, especially in the academic worlds. I can say that I listen to podcasts quite a bit. While I still occasionally listen to audio at someone&rsquo;s site it&rsquo;s just convenient to have ones I like downloaded to my computer. I am one of the supposed 80% that don&rsquo;t use a mobile devicefor it. I do have an ipod but often prefer to listen to music when I&rsquo;m wandering around.">
+<meta name=author content>
+<link rel=canonical href=https://ryaneby.com/2006/03/podcasting-and-the-lms-podcast2js/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://ryaneby.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://ryaneby.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://ryaneby.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://ryaneby.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://ryaneby.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.92.1">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="Podcasting and the LMS - Podcast2JS">
+<meta property="og:description" content="Podcasting still seems to be taking off, especially in the academic worlds. I can say that I listen to podcasts quite a bit. While I still occasionally listen to audio at someone&rsquo;s site it&rsquo;s just convenient to have ones I like downloaded to my computer. I am one of the supposed 80% that don&rsquo;t use a mobile devicefor it. I do have an ipod but often prefer to listen to music when I&rsquo;m wandering around.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ryaneby.com/2006/03/podcasting-and-the-lms-podcast2js/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2006-03-27T00:00:00+00:00">
+<meta property="article:modified_time" content="2006-03-27T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Podcasting and the LMS - Podcast2JS">
+<meta name=twitter:description content="Podcasting still seems to be taking off, especially in the academic worlds. I can say that I listen to podcasts quite a bit. While I still occasionally listen to audio at someone&rsquo;s site it&rsquo;s just convenient to have ones I like downloaded to my computer. I am one of the supposed 80% that don&rsquo;t use a mobile devicefor it. I do have an ipod but often prefer to listen to music when I&rsquo;m wandering around.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://ryaneby.com/posts/"},{"@type":"ListItem","position":3,"name":"Podcasting and the LMS - Podcast2JS","item":"https://ryaneby.com/2006/03/podcasting-and-the-lms-podcast2js/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Podcasting and the LMS - Podcast2JS","name":"Podcasting and the LMS - Podcast2JS","description":"Podcasting still seems to be taking off, especially in the academic worlds. I can say that I listen to podcasts quite a bit. While I still occasionally listen to audio at someone\u0026rsquo;s site it\u0026rsquo;s just convenient to have ones I like downloaded to my computer. I am one of the supposed 80% that don\u0026rsquo;t use a mobile devicefor it. I do have an ipod but often prefer to listen to music when I\u0026rsquo;m wandering around.","keywords":[],"articleBody":"Podcasting still seems to be taking off, especially in the academic worlds. I can say that I listen to podcasts quite a bit. While I still occasionally listen to audio at someone’s site it’s just convenient to have ones I like downloaded to my computer. I am one of the supposed 80% that don’t use a mobile devicefor it. I do have an ipod but often prefer to listen to music when I’m wandering around. That doesn’t mean I find it any less useful though, as it brings all the benefits of RSS to other forms of media.\nAs a former education major (and now distance learning support) I have a real interest in it’s use in courses, especially ones online. Having this media in the form of podcasts/vodcasts/etc allows easy use by those that want the content. Students can subscribe to lectures (video or audio), articles or information (itunes supports PDFs) or just view the information in the course.\nThere was a talk on campus I think last fall regarding podcasts in our LMS (learning management system…blackboard, etc). Right now it is very difficult to include this sort of functionality right into the course and about all you can do is provide the link to the podcast or upload the files to the course yourself. This is far from ideal. RSS is in the same boat with our LMS as there isn’t much support yet. You can bypass this by using some of the RSS2JS services that are out there. Unfortunately I couldn’t find a similar services for podcasts, so I built a prototype instead.\nIn simple terms all it does it take a URL for an argument and then output the information via document.writes into the browser. This lets you include the information into any normal html page with no need of having server side parsing on the server in question. I also passed the enclosure URL to a flash-based mp3 player. In the screen below I’m using the Odeo flash player though there are many available out there and ideally you would have one customized for the institutions. I’ve blanked out the URL as it’s not really production worthy. I’d be interested if someone created such a service though. Odeo currently offers HTML for individual shows but doesn’t have anything for full feeds.\nIn the example above the feed only has one show but it allows you to specify how many and will have a seperate box for each. I also include a link to download the mp3 file in case someone wants to save a specific show. The point of this is to allow you to show the most recent shows right inside your course or site (opac, etc). I’ve also provided the information and links to allow the student or user to subscribe to the podcast in their aggregator of choice. This allows them to consume the audio how they see fit. If there is an enclosure that isn’t an mp3 then I link to it instead as shown in the screen below.\nSomething like this has many uses though I would really prefer something that is built in. I’d be interested if anyone has something production-worthy already done. Mine is more of a proof-of-concept hackjob, though it mostly works.\n","wordCount":"545","inLanguage":"en","datePublished":"2006-03-27T00:00:00Z","dateModified":"2006-03-27T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://ryaneby.com/2006/03/podcasting-and-the-lms-podcast2js/"},"publisher":{"@type":"Organization","name":"Ryan Eby","logo":{"@type":"ImageObject","url":"https://ryaneby.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://ryaneby.com accesskey=h title="Ryan Eby (Alt + H)">Ryan Eby</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://ryaneby.com/archives/ title=archive>
+<span>archive</span>
+</a>
+</li>
+<li>
+<a href=https://ryaneby.com/about/ title=about>
+<span>about</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://ryaneby.com>Home</a>&nbsp;»&nbsp;<a href=https://ryaneby.com/posts/>Posts</a></div>
+<h1 class=post-title>
+Podcasting and the LMS - Podcast2JS
+</h1>
+<div class=post-meta><span title="2006-03-27 00:00:00 +0000 UTC">March 27, 2006</span>&nbsp;·&nbsp;3 min
+</div>
+</header>
+<div class=post-content><p>Podcasting still seems to be taking off, especially in the academic worlds. I can say that I listen to podcasts quite a bit. While I still occasionally listen to audio at someone&rsquo;s site it&rsquo;s just convenient to have ones I like downloaded to my computer. I am one of the supposed 80% that don&rsquo;t use a mobile device for it. I do have an ipod but often prefer to listen to music when I&rsquo;m wandering around. That doesn&rsquo;t mean I find it any less useful though, as it brings all the benefits of RSS to other forms of media.</p>
+<p>As a former education major (and now distance learning support) I have a real interest in it&rsquo;s use in courses, especially ones online. Having this media in the form of podcasts/vodcasts/etc allows easy use by those that want the content. Students can subscribe to lectures (video or audio), articles or information (itunes supports PDFs) or just view the information in the course.</p>
+<p>There was a talk on campus I think last fall regarding podcasts in our LMS (learning management system&mldr;blackboard, etc). Right now it is very difficult to include this sort of functionality right into the course and about all you can do is provide the link to the podcast or upload the files to the course yourself. This is far from ideal. RSS is in the same boat with our LMS as there isn&rsquo;t much support yet. You can bypass this by using some of the RSS2JS services that are out there. Unfortunately I couldn&rsquo;t find a similar services for podcasts, so I built a prototype instead.</p>
+<p>In simple terms all it does it take a URL for an argument and then output the information via document.writes into the browser. This lets you include the information into any normal html page with no need of having server side parsing on the server in question. I also passed the enclosure URL to a flash-based mp3 player. In the screen below I&rsquo;m using the Odeo flash player though there are many available out there and ideally you would have one customized for the institutions. I&rsquo;ve blanked out the URL as it&rsquo;s not really production worthy. I&rsquo;d be interested if someone created such a service though. Odeo currently offers HTML for individual shows but doesn&rsquo;t have anything for full feeds.</p>
+<p></p>
+<p>In the example above the feed only has one show but it allows you to specify how many and will have a seperate box for each. I also include a link to download the mp3 file in case someone wants to save a specific show. The point of this is to allow you to show the most recent shows right inside your course or site (opac, etc). I&rsquo;ve also provided the information and links to allow the student or user to subscribe to the podcast in their aggregator of choice. This allows them to consume the audio how they see fit. If there is an enclosure that isn&rsquo;t an mp3 then I link to it instead as shown in the screen below.</p>
+<p></p>
+<p>Something like this has many uses though I would really prefer something that is built in. I&rsquo;d be interested if anyone has something production-worthy already done. Mine is more of a proof-of-concept hackjob, though it mostly works.</p>
+</div>
+<footer class=post-footer>
+<nav class=paginav>
+<a class=prev href=https://ryaneby.com/2006/03/iii-item-data-from-xmlopac/>
+<span class=title>« Prev Page</span>
+<br>
+<span>III Item Data from XMLopac</span>
+</a>
+<a class=next href=https://ryaneby.com/2006/03/code4lib2006-day-1-afternoon/>
+<span class=title>Next Page »</span>
+<br>
+<span>Code4Lib2006 - Day 1 - Afternoon</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>

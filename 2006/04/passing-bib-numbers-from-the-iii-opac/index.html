@@ -1,0 +1,112 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Passing Bib Numbers from the III OPAC | Ryan Eby</title>
+<meta name=keywords content>
+<meta name=description content="For those III institutions not as adventurous as AADL, you may want to be able to pass the bib number for a record to your own scripts. In this way you can use the stock OPAC but still add functionality externally. I&rsquo;ll give an example below and some other ideas at the end.
+So let&rsquo;s start with an example. Our library doesn&rsquo;t use the stock recall functionality. They prefer to do it themselves and so have a webform that patrons can fill out.">
+<meta name=author content>
+<link rel=canonical href=https://ryaneby.com/2006/04/passing-bib-numbers-from-the-iii-opac/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://ryaneby.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://ryaneby.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://ryaneby.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://ryaneby.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://ryaneby.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.92.1">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="Passing Bib Numbers from the III OPAC">
+<meta property="og:description" content="For those III institutions not as adventurous as AADL, you may want to be able to pass the bib number for a record to your own scripts. In this way you can use the stock OPAC but still add functionality externally. I&rsquo;ll give an example below and some other ideas at the end.
+So let&rsquo;s start with an example. Our library doesn&rsquo;t use the stock recall functionality. They prefer to do it themselves and so have a webform that patrons can fill out.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ryaneby.com/2006/04/passing-bib-numbers-from-the-iii-opac/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2006-04-06T00:00:00+00:00">
+<meta property="article:modified_time" content="2006-04-06T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Passing Bib Numbers from the III OPAC">
+<meta name=twitter:description content="For those III institutions not as adventurous as AADL, you may want to be able to pass the bib number for a record to your own scripts. In this way you can use the stock OPAC but still add functionality externally. I&rsquo;ll give an example below and some other ideas at the end.
+So let&rsquo;s start with an example. Our library doesn&rsquo;t use the stock recall functionality. They prefer to do it themselves and so have a webform that patrons can fill out.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://ryaneby.com/posts/"},{"@type":"ListItem","position":3,"name":"Passing Bib Numbers from the III OPAC","item":"https://ryaneby.com/2006/04/passing-bib-numbers-from-the-iii-opac/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Passing Bib Numbers from the III OPAC","name":"Passing Bib Numbers from the III OPAC","description":"For those III institutions not as adventurous as AADL, you may want to be able to pass the bib number for a record to your own scripts. In this way you can use the stock OPAC but still add functionality externally. I\u0026rsquo;ll give an example below and some other ideas at the end.\nSo let\u0026rsquo;s start with an example. Our library doesn\u0026rsquo;t use the stock recall functionality. They prefer to do it themselves and so have a webform that patrons can fill out.","keywords":[],"articleBody":"For those III institutions not as adventurous as AADL, you may want to be able to pass the bib number for a record to your own scripts. In this way you can use the stock OPAC but still add functionality externally. I’ll give an example below and some other ideas at the end.\nSo let’s start with an example. Our library doesn’t use the stock recall functionality. They prefer to do it themselves and so have a webform that patrons can fill out. But lets say we want to include a button or link in the OPAC that only shows up on specific criteria. This would likely be difficult in the stock set-up but if you use your own script coupled with the xml server you can pretty much set any criteria you want. You could have all items checked out and at least one requestable, only for books already checked out for a certain period of time, not available online, etc.\nThere are a couple ways to accomplish this, though in both you are passing the bib number to an external script. One is to wrape an image in a link with the image having the src of the script. The script then returns a button image if it matches criteria or a 1x1 blank pixel image if it doesn’t, to prevent people from seeing or clicking on it. The other alternative is to have script tags where the src is your external script that document.write outs a link if it passes criteria or nothing if not, via javascript.\nSo how do you pass the bib number to an external script? The token for your template is  which I have to thank Johnfor. There are a couple caveats with the token:\nSo an example link would be:\nSo what are some possible applications you could build by passing the bib number and using the xml server? Well here’s a few ideas:\n","wordCount":"323","inLanguage":"en","datePublished":"2006-04-06T00:00:00Z","dateModified":"2006-04-06T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://ryaneby.com/2006/04/passing-bib-numbers-from-the-iii-opac/"},"publisher":{"@type":"Organization","name":"Ryan Eby","logo":{"@type":"ImageObject","url":"https://ryaneby.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://ryaneby.com accesskey=h title="Ryan Eby (Alt + H)">Ryan Eby</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://ryaneby.com/archives/ title=archive>
+<span>archive</span>
+</a>
+</li>
+<li>
+<a href=https://ryaneby.com/about/ title=about>
+<span>about</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://ryaneby.com>Home</a>&nbsp;»&nbsp;<a href=https://ryaneby.com/posts/>Posts</a></div>
+<h1 class=post-title>
+Passing Bib Numbers from the III OPAC
+</h1>
+<div class=post-meta><span title="2006-04-06 00:00:00 +0000 UTC">April 6, 2006</span>&nbsp;·&nbsp;2 min
+</div>
+</header>
+<div class=post-content><p>For those III institutions not as adventurous as AADL, you may want to be able to pass the bib number for a record to your own scripts. In this way you can use the stock OPAC but still add functionality externally. I&rsquo;ll give an example below and some other ideas at the end.</p>
+<p>So let&rsquo;s start with an example. Our library doesn&rsquo;t use the stock recall functionality. They prefer to do it themselves and so have a webform that patrons can fill out. But lets say we want to include a button or link in the OPAC that only shows up on specific criteria. This would likely be difficult in the stock set-up but if you use your own script coupled with the xml server you can pretty much set any criteria you want. You could have all items checked out and at least one requestable, only for books already checked out for a certain period of time, not available online, etc.</p>
+<p>There are a couple ways to accomplish this, though in both you are passing the bib number to an external script. One is to wrape an image in a link with the image having the src of the script. The script then returns a button image if it matches criteria or a 1x1 blank pixel image if it doesn&rsquo;t, to prevent people from seeing or clicking on it. The other alternative is to have script tags where the src is your external script that document.write outs a link if it passes criteria or nothing if not, via javascript.</p>
+<p>So how do you pass the bib number to an external script? The token for your template is &lt;!&ndash;{fieldspec:Fb081}&ndash;> which I have to thank John for. There are a couple caveats with the token:</p>
+<p>So an example link would be:</p>
+<p>So what are some possible applications you could build by passing the bib number and using the xml server? Well here&rsquo;s a few ideas:</p>
+</div>
+<footer class=post-footer>
+<nav class=paginav>
+<a class=prev href=https://ryaneby.com/2006/04/higheredblogcon-day-3/>
+<span class=title>« Prev Page</span>
+<br>
+<span>HigherEdBlogCon - Day 3</span>
+</a>
+<a class=next href=https://ryaneby.com/2006/04/digitization-webcast/>
+<span class=title>Next Page »</span>
+<br>
+<span>Digitization Webcast</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>
